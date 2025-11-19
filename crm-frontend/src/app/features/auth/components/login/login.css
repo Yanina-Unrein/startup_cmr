@@ -1,0 +1,91 @@
+mat-icon {
+  user-select: none;
+}
+
+/* Smooth transitions para iconos */
+mat-icon {
+   font-size: 22px !important;     /* tamaño correcto */
+  width: 24px !important;
+  height: 22px !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease-in-out;
+  padding-left: 0.45rem;
+  margin-right: 20px;
+}
+
+.icon-view{
+    width: 28px !important;
+}
+
+.error-icon{
+    width: 100% !important;
+}
+
+button:hover mat-icon {
+  transform: scale(1.1);
+}
+
+/* Decoración curva lateral */
+.decoration-curve {
+  clip-path: ellipse(70% 100% at 100% 50%);
+}
+
+/* Espaciado adicional con CSS */
+.login-card {
+  padding: 2.5rem !important;
+}
+
+.login-header {
+  margin-bottom: 1rem !important;
+}
+
+.credentials-info {
+  margin-bottom: 2rem !important;
+  padding: 15px;
+}
+
+form {
+  gap: 1.5rem !important;
+}
+
+form > div {
+  margin-bottom: 1rem !important;
+}
+
+label {
+  margin-bottom: 0.7rem !important;
+}
+
+input {
+  padding: 0.875rem 1rem !important;
+}
+
+.input-login {
+  padding-left: 2rem !important; /* separa del icono */
+  padding-right: 1rem !important;
+  margin: 0 !important; /* evita conflictos */
+  line-height: normal !important;
+}
+
+.btn-login {
+  padding: 0.9rem !important;
+}
+.container-password{
+    padding-bottom: 10px;
+}
+
+.tooltip-m{
+    padding: 10px;
+}
+
+.forgot-password {
+  margin-top: 1rem !important;
+}
+
+.login-footer {
+  margin-top: 1rem !important;
+  padding-top: 1rem !important;
+}

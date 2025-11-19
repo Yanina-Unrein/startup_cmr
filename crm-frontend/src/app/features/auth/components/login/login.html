@@ -1,0 +1,153 @@
+<div
+  class="min-h-screen flex relative overflow-hidden bg-linear-to-br from-blue-50 via-blue-100 to-blue-200"
+>
+  <div class="flex-1 flex justify-center items-center p-8 relative z-10">
+    <div
+      class="login-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md"
+    >
+      <div class="login-header text-center mb-8">
+        <h1 class="text-5xl font-light mb-8">
+          <span class="font-semibold text-blue-500">Startup</span>
+          <span class="font-light text-blue-700">CRM</span>
+        </h1>
+        <h2 class="text-2xl text-blue-700 font-normal">Login</h2>
+      </div>
+      <div
+        class="credentials-info bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-8 text-center"
+      >
+        <p class="text-sm text-blue-800">
+          Username: <strong class="font-semibold text-blue-900">Admin</strong>
+        </p>
+        <p class="text-sm text-blue-800 mt-1">
+          Password:
+          <strong class="font-semibold text-blue-900">Admin_123</strong>
+        </p>
+      </div>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="space-y-6">
+        <div>
+          <label
+            for="username"
+            class="block mb-3 text-sm font-medium text-gray-700"
+          >
+            Username
+          </label>
+          <div class="relative">
+            <div
+              class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pl-3 pointer-events-none h-fit"
+            >
+              <mat-icon
+                class="text-blue-500 w-6 h-6 !leading-none flex items-center justify-center"
+                >person</mat-icon
+              >
+            </div>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              [(ngModel)]="username"
+              required
+              placeholder="Enter your username"
+              autocomplete="username"
+              class="input-login bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block w-full pr-3 py-3.5 shadow-sm transition-all"
+              style="padding-left: 3.2rem"
+              #u="ngModel"
+              [ngClass]="{
+                'border-red-500 focus:border-red-600 focus:ring-red-500':
+                  u.invalid && u.touched,
+                'border-green-500 focus:border-green-600 focus:ring-green-500':
+                  u.valid && u.touched
+              }"
+            />
+          </div>
+        </div>
+        <div class="container-password">
+          <label
+            for="password"
+            class="block mb-3 text-sm font-medium text-gray-700"
+          >
+            Password
+          </label>
+          <div class="relative">
+            <div
+              class="absolute top-1/2 -translate-y-1/2 left-0 flex items-center pl-3 pointer-events-none h-fit"
+            >
+              <mat-icon class="text-blue-500 w-5! h-5! text-xl!">lock</mat-icon>
+            </div>
+            <input
+              [type]="hidePassword ? 'password' : 'text'"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              required
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              class="input-login bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 block w-full pl-11 pr-12 py-3.5 shadow-sm transition-all"
+              #p="ngModel"
+              [ngClass]="{
+                'border-red-500 focus:border-red-600 focus:ring-red-500':
+                  p.invalid && p.touched,
+                'border-green-500 focus:border-green-600 focus:ring-green-500':
+                  p.valid && p.touched
+              }"
+            />
+            <button
+              type="button"
+              (click)="hidePassword = !hidePassword"
+              class="absolute top-1/2 -translate-y-1/2 right-0 flex items-center justify-center pr-3 h-fit text-gray-500 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              <mat-icon class="eye-icon">
+                {{ hidePassword ? "visibility_off" : "visibility" }}
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+        @if (errorMessage) {
+        <div
+          class="error-message text-red-600 flex flex-col justify-center items-center"
+        >
+          <mat-icon class="error-icon">error_outline</mat-icon>
+          <span>{{ errorMessage }}</span>
+        </div>
+        }
+        <div class="relative group w-full">
+          <button
+            type="submit"
+            [disabled]="!loginForm.form.valid"
+            class="btn-login w-full cursor-pointer bg-linear-to-r from-blue-500 to-blue-600 text-white font-medium rounded-full py-3.5 px-6 hover:from-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg uppercase tracking-wide"
+          >
+            Login
+          </button>
+          @if (!loginForm.form.valid) {
+          <div
+            class="tooltip-m absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-3 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          >
+            Completá los campos
+          </div>
+          }
+        </div>
+      </form>
+      <div class="forgot-password text-center">
+        <a
+          href="#"
+          class="text-sm text-blue-500 hover:text-blue-700 hover:underline transition-colors cursor-pointer"
+        >
+          Forgot your password?
+        </a>
+      </div>
+      <div
+        class="login-footer flex flex-col gap-1.5 mt-8 pt-6 border-t border-gray-200 text-center"
+      >
+        <p class="text-xs text-gray-500 mt-1">
+          © 2025 - 2025
+          <strong class="text-blue-600 font-semibold">StartupCRM</strong>, Inc.
+          All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decoración lateral azul -->
+  <div
+    class="decoration-curve hidden md:block absolute right-0 top-0 w-[45%] h-full bg-linear-to-br from-blue-500 via-blue-600 to-blue-700 z-0"
+  ></div>
+</div>
