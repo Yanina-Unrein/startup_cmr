@@ -22,8 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
-   username: string = '';
+export default class Login {
+  username: string = '';
   password: string = '';
   errorMessage: string = '';
   hidePassword: boolean = true;
@@ -42,7 +42,7 @@ export class Login {
       console.log('Login exitoso');
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('username', this.username);
-      
+
       // Redirigir al dashboard o página principal
       this.router.navigate(['/dashboard']);
     } else {
