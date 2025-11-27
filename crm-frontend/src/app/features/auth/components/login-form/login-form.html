@@ -1,0 +1,93 @@
+<div class="error-container space-y-1 bg-red-500/20 rounded-lg">
+   @if (errorMessage) {
+      <p class="text-gray-700 text-sm flex items-center">
+        <mat-icon class="text-base">error_outline</mat-icon>
+        {{ errorMessage }}
+      </p>
+  }
+  
+  @if (showEmailRequiredError) {
+      <p class="text-gray-700 text-sm flex items-center ">
+        <mat-icon class="text-base">error_outline</mat-icon>
+        El email es requerido
+      </p>
+  }
+  
+  @if (showEmailInvalidError) {
+      <p class="text-gray-700 text-sm flex items-center">
+        <mat-icon class="text-base">error_outline</mat-icon>
+        Email inválido
+      </p>
+  }
+  
+  @if (showPasswordRequiredError) {
+      <p class="text-gray-700 text-sm flex items-center">
+        <mat-icon class="text-base">error_outline</mat-icon>
+        La contraseña es requerida
+      </p>
+  }
+</div>
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="space-y-6">
+    <div>
+        <div class="relative">
+            <input
+                type="email"
+                id="email"
+                formControlName="email"
+                required
+                placeholder="Email"
+                autocomplete="email"
+                class="email-input bg-white text-sm rounded-t-lg w-full py-3.5 pr-3"
+                style="padding-left: 3.2rem"
+                [ngClass]="{
+                'border-red-500': form.get('email')?.invalid && form.get('email')?.touched,
+                'border-gray-300': !(form.get('email')?.invalid && form.get('email')?.touched)
+        }"
+            />
+        </div>
+    </div>
+    <div class="container-password">
+        <div class="relative">
+            <input
+                [type]="hidePassword ? 'password' : 'text'"
+                id="password"
+                formControlName="password"
+                required
+                placeholder="Contraseña"
+                autocomplete="current-password"
+                class="bg-white border text-gray-900 text-sm rounded-b-lg w-full pl-11 pr-12 py-3.5 "
+                [ngClass]="{
+                  'border-red-500': form.get('password')?.invalid && form.get('password')?.touched,
+                  'border-gray-300': !(form.get('password')?.invalid && form.get('password')?.touched)
+                }"
+            />
+            <button
+                type="button"
+                (click)="hidePassword = !hidePassword"
+                class="absolute top-1/2 -translate-y-1/2 right-0 pr-3 text-gray-500 hover:text-blue-600 cursor-pointer"
+            >
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+        </div>
+    </div>
+
+   <div class="forgot-password">
+        <a
+          href="#"
+          class="text-base text-blue-600 hover:text-blue-700 hover:underline transition-colors cursor-pointer"
+        >
+          ¿Olvidaste tu contraseña?
+        </a>
+    </div>
+
+  <div class="relative group w-full">
+    <button
+      type="submit"
+      [disabled]="isLoading"
+      class="btn-login w-full cursor-pointer bg-blue-700 text-white font-medium rounded-xl py-3.5 shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+    >
+      {{ isLoading ? 'Iniciando sesión...' : 'Login' }}
+    </button>
+  </div>
+</form>
+

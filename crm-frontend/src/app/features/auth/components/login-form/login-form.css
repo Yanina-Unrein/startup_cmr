@@ -1,0 +1,76 @@
+mat-icon {
+  user-select: none;
+}
+
+mat-icon {
+    font-size: 22px !important;    
+    width: 28px !important;
+    height: 28px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease-in-out;
+    margin-right: 20px;
+}
+
+.error-icon{
+    width: 100% !important;
+}
+
+button:hover mat-icon {
+  transform: scale(1.1);
+}
+
+.decoration-curve {
+  clip-path: ellipse(70% 100% at 100% 50%);
+}
+
+.login-card {
+  padding: 2.5rem !important;
+}
+
+.login-header {
+  margin-bottom: 1rem !important;
+}
+
+
+form {
+  gap: 1.5rem !important;
+}
+
+input {
+  padding: 1rem !important;
+}
+
+.email-input{
+  border-top-color: #99a1af;
+  border-bottom-color: transparent !important;
+}
+
+.btn-login {
+  padding: 0.9rem !important;
+}
+.container-password{
+    padding-bottom: 10px;
+}
+
+.tooltip-m{
+    padding: 10px;
+}
+
+.forgot-password {
+  margin: 1rem 0 !important;
+}
+
+.error-container{
+  margin: 24px 0;
+}
+
+.error-container p{
+  padding: 5px;
+}
+
+.error-container p mat-icon{
+  margin-right: 5px;
+}
