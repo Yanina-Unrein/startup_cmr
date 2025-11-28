@@ -1,6 +1,6 @@
 [build]
   command = "npm install && npm run build"
-  publish = "dist/nombre-de-tu-proyecto"
+  publish = "dist/crm-frontend"
 
 [[redirects]]
   from = "/*"
