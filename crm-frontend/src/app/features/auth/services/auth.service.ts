@@ -30,7 +30,7 @@ export class AuthService {
   }
   register(data: {
   email: string;
-  password: string;
+  comtrasena: string;
   nombre: string;
   empresaId: number;
   tipoUsuario: string;
