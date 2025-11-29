@@ -2,9 +2,3 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
