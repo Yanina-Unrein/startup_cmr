@@ -6,10 +6,10 @@
     </p>
   }
 
-  @if (showNombreRequiredError) {
+  @if (showFullNameRequiredError) {
     <p class="text-gray-700 text-sm flex items-center">
       <mat-icon class="text-base">error_outline</mat-icon>
-      El nombre es requerido
+      El nombre completo es requerido
     </p>
   }
 
@@ -34,14 +34,14 @@
     </p>
   }
 
-  @if (showEmpresaRequiredError) {
+  @if (showCompanyRequiredError) {
     <p class="text-gray-700 text-sm flex items-center">
       <mat-icon class="text-base">error_outline</mat-icon>
       La empresa es requerida
     </p>
   }
 
-  @if (showTipoUsuarioRequiredError) {
+  @if (showUserTypeRequiredError) {
     <p class="text-gray-700 text-sm flex items-center">
       <mat-icon class="text-base">error_outline</mat-icon>
       Debes seleccionar un tipo de usuario
@@ -51,13 +51,13 @@
 
 <form [formGroup]="form" (ngSubmit)="submitForm()" class="space-y-6">
 
-  <!-- Nombre -->
+  <!-- Nombre completo -->
   <div>
     <div class="relative">
       <input
         type="text"
-        id="nombre"
-        formControlName="nombre"
+        id="fullName"
+        formControlName="fullName"
         required
         placeholder="Nombre completo"
         class="email-input bg-white text-sm rounded-lg w-full py-3.5 pr-3"
@@ -109,8 +109,8 @@
     <div class="relative">
       <input
         type="number"
-        id="empresaId"
-        formControlName="empresaId"
+        id="companyId"
+        formControlName="companyId"
         required
         placeholder="ID de la empresa"
         class="bg-white text-sm rounded-lg w-full py-3.5 pr-3"
@@ -122,14 +122,14 @@
   <div>
     <div class="relative">
       <select
-        id="tipoUsuario"
-        formControlName="tipoUsuario"
+        id="userType"
+        formControlName="userType"
         required
         class="bg-white text-sm rounded-lg w-full py-3.5 pr-3 border border-gray-300"
       >
         <option value="" disabled>Seleccioná un tipo de usuario</option>
-        <option value="ADMINISTRADOR">Admin</option>
-        <option value="USUARIO">Usuario</option>
+        <option value="ADMIN">Admin</option>
+        <option value="USER">Usuario</option>
       </select>
     </div>
   </div>

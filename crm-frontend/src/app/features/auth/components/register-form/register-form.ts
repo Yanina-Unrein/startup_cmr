@@ -32,28 +32,29 @@ export class RegisterForm {
   hidePassword = true;
 
   form = this.fb.group({
-    nombre: this.fb.nonNullable.control('', [Validators.required]),
     email: this.fb.nonNullable.control('', [Validators.required, Validators.email]),
     password: this.fb.nonNullable.control('', [Validators.required]),
-    empresaId: this.fb.nonNullable.control('', [Validators.required]),
-    tipoUsuario: this.fb.nonNullable.control('', [Validators.required]),
+    fullName: this.fb.nonNullable.control('', [Validators.required]),
+    companyId: this.fb.nonNullable.control('', [Validators.required]),
+    userType: this.fb.nonNullable.control('', [Validators.required]),
   });
 
-  get nombreControl() { return this.form.get('nombre'); }
   get emailControl() { return this.form.get('email'); }
   get passwordControl() { return this.form.get('password'); }
-  get empresaControl() { return this.form.get('empresaId'); }
-  get tipoControl() { return this.form.get('tipoUsuario'); }
+  get fullNameControl() { return this.form.get('fullName'); }
+  get companyControl() { return this.form.get('companyId'); }
+  get userTypeControl() { return this.form.get('userType'); }
 
-  get showNombreRequiredError() { return this.nombreControl?.touched && this.nombreControl?.hasError('required'); }
+  
   get showEmailRequiredError() { return this.emailControl?.touched && this.emailControl?.hasError('required'); }
   get showEmailInvalidError() {
     const email = this.emailControl;
     return email?.touched && email?.hasError('email') && !email?.hasError('required');
   }
   get showPasswordRequiredError() { return this.passwordControl?.touched && this.passwordControl?.hasError('required'); }
-  get showEmpresaRequiredError() { return this.empresaControl?.touched && this.empresaControl?.hasError('required'); }
-  get showTipoUsuarioRequiredError() { return this.tipoControl?.touched && this.tipoControl?.hasError('required'); }
+  get showFullNameRequiredError() { return this.fullNameControl?.touched && this.fullNameControl?.hasError('required'); }
+  get showCompanyRequiredError() { return this.companyControl?.touched && this.companyControl?.hasError('required'); }
+  get showUserTypeRequiredError() { return this.userTypeControl?.touched && this.userTypeControl?.hasError('required'); }
 
   submitForm() {
     if (this.form.invalid) {

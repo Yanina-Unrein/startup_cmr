@@ -30,10 +30,10 @@ export class AuthService {
   }
   register(data: {
   email: string;
-  comtrasena: string;
-  nombre: string;
-  empresaId: number;
-  tipoUsuario: string;
+  password: string;
+  fullName: string;
+  companyId: number;
+  userType: string;
 }) {
   return this.http.post(`${this.apiUrl}/register`, data);
 }
