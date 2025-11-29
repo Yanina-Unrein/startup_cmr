@@ -8,6 +8,11 @@ const authRoutes: Routes = [
         path:'login',
         title:'Bienvenido, Ingresa y disfruta de nuestro servicio',
         loadComponent:()=>import('../pages/login/login')
+      },
+      {
+        path:'register',
+        title:'Registrate y forma parte de Nosotros',
+        loadComponent:()=>import('../pages/register/register')
       }
     ]
   }
