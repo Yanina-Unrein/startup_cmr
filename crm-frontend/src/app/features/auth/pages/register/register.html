@@ -1,1 +1,27 @@
-<p>register works!</p>
+<div class="min-h-screen flex relative overflow-hidden bg-linear-to-br from-blue-50 via-blue-100 to-blue-200">
+  <div class="flex-1 flex justify-center items-center p-8 relative z-10">
+    <div class="login-card bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md">
+      <div class="login-header text-center mb-8">
+        <h1 class="text-5xl font-light mb-8 flex gap-1.5 justify-center">
+          <span class="font-semibold text-blue-500">Startup</span>
+          <span class="font-light text-blue-700">CRM</span>
+        </h1>
+        <h2 class="text-2xl text-black font-semibold text-left">Registrarse</h2>
+      </div>
+
+      <app-register-form
+        [errorMessage]="errorMessage"
+        [isLoading]="isLoading"
+        (register)="onSubmit($event)"
+      ></app-register-form>
+
+      <div class="login-footer flex flex-col gap-1.5 mt-8 pt-6 border-t border-gray-200 text-center">
+        <p class="text-xs text-gray-500 mt-1">
+          © 2025 - 2025 <strong class="text-blue-600 font-semibold">StartupCRM</strong>, Inc. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="decoration-curve hidden md:block absolute right-0 top-0 w-[45%] h-full bg-linear-to-br from-blue-500 via-blue-600 to-blue-700 z-0"></div>
+</div>

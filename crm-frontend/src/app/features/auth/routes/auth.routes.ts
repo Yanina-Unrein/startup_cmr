@@ -10,9 +10,9 @@ const authRoutes: Routes = [
         loadComponent:()=>import('../pages/login/login')
       },
       {
-        path:'register',
-        title:'Registrate y forma parte de Nosotros',
-        loadComponent:()=>import('../pages/register/register')
+        path: 'register',
+        title: 'Crear cuenta nueva',
+        loadComponent: () => import('../pages/register/register'),
       }
     ]
   }
