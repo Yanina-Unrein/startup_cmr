@@ -7,6 +7,7 @@ import { LogoTitle } from "@/app/shared/components/logo-title/logo-title";
 
 @Component({
   selector: 'app-landing',
+  standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, LogoTitle],
   templateUrl: './landing.html',
   styleUrl: './landing.css',

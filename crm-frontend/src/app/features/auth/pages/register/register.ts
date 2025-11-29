@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RegisterForm } from '../../components/register-form/register-form';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +20,8 @@ import { LogoTitle } from "@/app/shared/components/logo-title/logo-title";
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    LogoTitle
+    LogoTitle,
+    RouterLink
 ],
   templateUrl: './register.html',
   styleUrl: './register.css',
