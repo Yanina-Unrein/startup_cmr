@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth.service';
 import { LoginForm } from '../../components/login-form/login-form';
+import { LogoTitle } from "@/app/shared/components/logo-title/logo-title";
 
 
 
@@ -24,7 +25,8 @@ import { LoginForm } from '../../components/login-form/login-form';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    LoginForm
+    LoginForm,
+    LogoTitle
 ],
   templateUrl: './login.html',
   styleUrl: './login.css',

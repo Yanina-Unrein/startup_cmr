@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { LogoTitle } from "@/app/shared/components/logo-title/logo-title";
 
 @Component({
   selector: 'app-landing',
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, LogoTitle],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })

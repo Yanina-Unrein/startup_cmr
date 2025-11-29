@@ -8,11 +8,8 @@
       px-4 py-8 sm:px-10 sm:py-12"
     >
       <div class="login-header text-center mb-8">
-        <h1 class="text-5xl font-light mb-8 flex gap-1.5 justify-center">
-          <span class="font-semibold text-blue-500">Startup</span>
-          <span class="font-light text-blue-700">CRM</span>
-        </h1>
-        <h2 class="text-2xl text-black font-semibold text-left">Iniciar sesión</h2>
+       <app-logo-title size="text-5xl" [link]="true" url=""></app-logo-title>
+        <h2 class="text-2xl text-black font-semibold text-left mt-6">Iniciar sesión</h2>
       </div>      
       <app-login-form 
         [errorMessage]="errorMessage"
