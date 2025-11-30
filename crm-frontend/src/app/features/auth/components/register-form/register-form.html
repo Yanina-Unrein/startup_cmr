@@ -7,7 +7,7 @@
   }
 
 
-  @if (showNombreRequiredError) {
+  @if (showFullNameRequiredError) {
     <p class="text-gray-700 text-sm flex items-center p-3">
       <mat-icon class="text-base mr-2">error_outline</mat-icon>
       El nombre es requerido
@@ -36,41 +36,26 @@
     </p>
   }
 
-<<<<<<< HEAD
   @if (showCompanyRequiredError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
-=======
-  @if (showEmpresaRequiredError) {
     <p class="text-gray-700 text-sm flex items-center p-3">
       <mat-icon class="text-base mr-2">error_outline</mat-icon>
->>>>>>> 258d4df5132a75c2931add9de0e9aba1fa1fbf72
+
       La empresa es requerida
     </p>
   }
 
-<<<<<<< HEAD
   @if (showUserTypeRequiredError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
-=======
-  @if (showTipoUsuarioRequiredError) {
     <p class="text-gray-700 text-sm flex items-center p-3">
       <mat-icon class="text-base mr-2">error_outline</mat-icon>
->>>>>>> 258d4df5132a75c2931add9de0e9aba1fa1fbf72
       Debes seleccionar un tipo de usuario
     </p>
   }
 </div>
 
-<<<<<<< HEAD
-<form [formGroup]="form" (ngSubmit)="submitForm()" class="space-y-6">
 
-  <!-- Nombre completo -->
-=======
 <form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col gap-4">
   <!-- Nombre -->
->>>>>>> 258d4df5132a75c2931add9de0e9aba1fa1fbf72
+
   <div>
     <div class="relative">
       <input
