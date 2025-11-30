@@ -1,0 +1,17 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 300px;
+  border-right: 1px solid #e5e7eb;
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  overflow: hidden;
+  background: #fafafa;
+}

@@ -33,7 +33,7 @@ export class AuthService {
   password: string;
   fullName: string;
   companyId: number;
-  userType: string;
+  typeUser: string;
 }) {
   return this.http.post(`${this.apiUrl}/register`, data);
 }

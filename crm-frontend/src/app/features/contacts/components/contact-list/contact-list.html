@@ -1,0 +1,38 @@
+<div class="contacts-container space-y-4 p-2">
+
+  <!-- Filtros -->
+  <div class="filter-bar flex gap-2 mb-2">
+    <button mat-stroked-button color="{{ filterStatus === '' ? 'primary' : '' }}" (click)="setFilter('')">Todos</button>
+    <button mat-stroked-button color="{{ filterStatus === 'NEW' ? 'primary' : '' }}" (click)="setFilter('NEW')">Nuevos</button>
+    <button mat-stroked-button color="{{ filterStatus === 'CONTACTED' ? 'primary' : '' }}" (click)="setFilter('CONTACTED')">Contactados</button>
+    <button mat-stroked-button color="{{ filterStatus === 'ACTIVE' ? 'primary' : '' }}" (click)="setFilter('ACTIVE')">Activos</button>
+    <button mat-stroked-button color="{{ filterStatus === 'CLOSED' ? 'primary' : '' }}" (click)="setFilter('CLOSED')">Cerrados</button>
+    <button mat-stroked-button color="{{ filterStatus === 'LOST' ? 'primary' : '' }}" (click)="setFilter('LOST')">Perdidos</button>
+  </div>
+
+  <!-- Lista de contactos -->
+  <div class="contacts-list grid grid-cols-1 gap-2">
+    <mat-card *ngFor="let contact of filteredContacts" class="contact-card" (click)="selectContact(contact)" [class.selected]="selectedContact?.id === contact.id">
+      <mat-card-header>
+        <mat-icon>person</mat-icon>
+        <mat-card-title>{{ contact.name }}</mat-card-title>
+        <mat-card-subtitle>{{ contact.email || 'Sin email' }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p *ngIf="contact.phone">📞 {{ contact.phone }}</p>
+        <p *ngIf="contact.whatsappPhone">💬 {{ contact.whatsappPhone }}</p>
+        <p>Funnel: <strong>{{ contact.funnelStatus }}</strong></p>
+      </mat-card-content>
+
+      <mat-card-actions class="flex justify-end gap-2">
+        <button mat-mini-button color="primary">Ver detalle</button>
+        <button mat-mini-button color="accent">Editar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="filteredContacts.length === 0" class="text-gray-500 text-center mt-2">
+    No hay contactos para mostrar.
+  </div>
+</div>

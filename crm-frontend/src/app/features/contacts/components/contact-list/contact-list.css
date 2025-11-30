@@ -1,0 +1,18 @@
+.contacts-container {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.contact-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card.selected {
+  border: 2px solid #1976d2;
+}

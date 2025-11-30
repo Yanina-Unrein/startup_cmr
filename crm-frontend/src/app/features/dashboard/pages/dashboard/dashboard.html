@@ -1,1 +1,13 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <app-chat-list (openConversation)="onOpenConversation($event)"></app-chat-list>
+  </aside>
+
+  <!-- MAIN VIEW -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ChatListComponent } from '@/app/features/messages/components/chat-list/chat-list.component/chat-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule, ChatListComponent],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  styleUrls: ['./dashboard.css']
 })
-export default class Dashboard {
+export class DashboardComponent {
+
+  private router = inject(Router);
+
+  onOpenConversation(contactId: number) {
+    this.router.navigate(['/dashboard/messages', contactId]);
+  }
 
 }
+
