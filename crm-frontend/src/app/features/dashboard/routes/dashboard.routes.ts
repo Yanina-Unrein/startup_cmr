@@ -1,27 +1,37 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from '../pages/dashboard/dashboard';
-import { MessagesPageComponent } from '../pages/messages-page/messages-page.component/messages-page.component';
+
+// import { authGuard } from '@/app/core/guards/auth.guard'; // desactivado
+
 export const dashboardRoutes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
-      {
-        path: 'messages',
-        component: MessagesPageComponent,
-      },
-      {
-        path: 'messages/:contactId',
-        component: MessagesPageComponent,
-      },
-
-      // Default → redirige a messages
+      /**
+       * RUTA PRINCIPAL DEL DASHBOARD
+       * /dashboard → pantalla de contactos + mensajes
+       */
       {
         path: '',
-        redirectTo: 'messages',
-        pathMatch: 'full'
+        loadChildren: () =>
+          import('../../contacts/routes/contact.routes')
+            .then(m => m.default),
+      },
+
+      /**
+       * MENSAJES (cuando el usuario selecciona un contacto)
+       * /dashboard/messages/:contactId
+       */
+      {
+        path: 'messages/:contactId',
+        loadComponent: () =>
+          import('../pages/messages-page/messages-page.component/messages-page.component')
+            .then(m => m.MessagesPageComponent),
       }
     ]
   }
 ];
+
 export default dashboardRoutes;
+

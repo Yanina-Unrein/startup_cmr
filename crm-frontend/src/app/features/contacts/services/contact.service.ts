@@ -19,12 +19,12 @@ export class ContactsService {
     this.contactsSubject.next(seed);
   }
 
-  /** Cargar desde backend (mock aquí) */
   loadContacts(): Observable<Contact[]> {
     // Replace by: return this.http.get<Contact[]>('/api/contacts')
-    const current = this.contactsSubject.value;
-    return of(current);
-  }
+  const current = this.contactsSubject.value;
+  this.contactsSubject.next(current); 
+  return of(current);
+}
 
   /** Obtener un contacto por id (sin cambiar el stream) */
   getContactById(id: number): Contact | undefined {
