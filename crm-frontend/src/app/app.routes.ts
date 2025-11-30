@@ -19,11 +19,14 @@ export const routes: Routes = [
    */
   {
     path: '',
-    component: PublicLayout,
-    loadChildren: () =>
-      import('./features/auth/routes/auth.routes'),
-    // ⭐ Cuando quieras activar la protección:
-    // canActivate: [PublicGuard]
+
+    loadComponent: () => import('./features/landing/landing/landing')
+  },
+  {
+    path:'',
+    component:PublicLayout,
+    loadChildren: ()=>import('./features/auth/routes/auth.routes')
+
   },
 
   /**
