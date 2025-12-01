@@ -1,8 +1,9 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { LoginResponse } from '@/app/core/models/LoginResponse';
 import { environment } from '@/environments/environment.development';
+import { RegisterUser } from '../models/register-user';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class AuthService {
 
   isLogged = computed(() => !!this._token());
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password })
@@ -28,15 +29,10 @@ export class AuthService {
         })
       );
   }
-  register(data: {
-  email: string;
-  comtrasena: string;
-  nombre: string;
-  empresaId: number;
-  tipoUsuario: string;
-}) {
-  return this.http.post(`${this.apiUrl}/register`, data);
-}
+
+  register(user: RegisterUser): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, user);
+  }
 
 
   logout() {

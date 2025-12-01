@@ -1,23 +1,4 @@
-/* Decoración curva lateral */
 .decoration-curve {
   clip-path: ellipse(70% 100% at 100% 50%);
 }
 
-/* Tarjeta principal */
-.register-card {
-  padding: 2.5rem !important;
-}
-
-.register-header {
-  margin-bottom: 1rem !important;
-}
-
-.register-header h2 {
-  padding-top: 24px;
-}
-
-/* Footer */
-.register-footer {
-  margin-top: 1rem !important;
-  padding-top: 1rem !important;
-}

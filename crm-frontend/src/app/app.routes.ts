@@ -4,6 +4,10 @@ import { MainLayout } from './shared/layouts/main-layout/main-layout';
 
 export const routes: Routes = [
   {
+    path: '',
+    loadComponent: () => import('./features/landing/landing/landing')
+  },
+  {
     path:'',
     component:PublicLayout,
     loadChildren: ()=>import('./features/auth/routes/auth.routes')

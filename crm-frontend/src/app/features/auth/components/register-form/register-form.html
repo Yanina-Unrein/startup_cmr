@@ -1,58 +1,56 @@
-<div class="error-container space-y-1 bg-red-500/20 rounded-lg">
+<div class="error-container space-y-1 bg-red-500/20 rounded-lg mb-4">
   @if (errorMessage) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
+    <p class="text-gray-700 text-sm flex items-center p-3">
+      <mat-icon class="text-base mr-2">error_outline</mat-icon>
       {{ errorMessage }}
     </p>
   }
 
   @if (showNombreRequiredError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
+    <p class="text-gray-700 text-sm flex items-center p-3">
+      <mat-icon class="text-base mr-2">error_outline</mat-icon>
       El nombre es requerido
     </p>
   }
 
   @if (showEmailRequiredError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
+    <p class="text-gray-700 text-sm flex items-center p-3">
+      <mat-icon class="text-base mr-2">error_outline</mat-icon>
       El email es requerido
     </p>
   }
 
   @if (showEmailInvalidError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
+    <p class="text-gray-700 text-sm flex items-center p-3">
+      <mat-icon class="text-base mr-2">error_outline</mat-icon>
       Email inválido
     </p>
   }
 
   @if (showPasswordRequiredError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
+    <p class="text-gray-700 text-sm flex items-center p-3">
+      <mat-icon class="text-base mr-2">error_outline</mat-icon>
       La contraseña es requerida
     </p>
   }
 
   @if (showEmpresaRequiredError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
+    <p class="text-gray-700 text-sm flex items-center p-3">
+      <mat-icon class="text-base mr-2">error_outline</mat-icon>
       La empresa es requerida
     </p>
   }
 
   @if (showTipoUsuarioRequiredError) {
-    <p class="text-gray-700 text-sm flex items-center">
-      <mat-icon class="text-base">error_outline</mat-icon>
+    <p class="text-gray-700 text-sm flex items-center p-3">
+      <mat-icon class="text-base mr-2">error_outline</mat-icon>
       Debes seleccionar un tipo de usuario
     </p>
   }
 </div>
 
-<form [formGroup]="form" (ngSubmit)="submitForm()" class="space-y-6">
-
-  <!-- Nombre -->
-  <div>
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4">
     <div class="relative">
       <input
         type="text"
@@ -60,14 +58,9 @@
         formControlName="nombre"
         required
         placeholder="Nombre completo"
-        class="email-input bg-white text-sm rounded-lg w-full py-3.5 pr-3"
-        style="padding-left: 3.2rem"
+        class="email-input bg-white border-2 border-gray-300 text-gray-500 text-sm rounded-t-lg w-full py-3.5"
       />
     </div>
-  </div>
-
-  <!-- Email -->
-  <div>
     <div class="relative">
       <input
         type="email"
@@ -76,13 +69,9 @@
         required
         placeholder="Email"
         autocomplete="email"
-        class="email-input bg-white text-sm rounded-t-lg w-full py-3.5 pr-3"
-        style="padding-left: 3.2rem"
+        class="email-input border-2 border-gray-300 bg-white text-sm text-gray-500 w-full py-3.5 pr-3"
       />
     </div>
-  </div>
-
-  <!-- Password -->
   <div class="container-password">
     <div class="relative">
       <input
@@ -92,20 +81,17 @@
         required
         placeholder="Contraseña"
         autocomplete="new-password"
-        class="bg-white border text-gray-900 text-sm rounded-b-lg w-full pl-11 pr-12 py-3.5 "
+        class="bg-white border-2 border-gray-300 text-gray-500 text-sm  w-full pr-12 py-3.5 "
       />
       <button
         type="button"
         (click)="hidePassword = !hidePassword"
-        class="absolute top-1/2 -translate-y-1/2 right-0 pr-3 text-gray-500 hover:text-blue-600 cursor-pointer"
+        class="absolute top-1/2 -translate-y-1/2 right-5 pr-3text-gray-500 hover:text-blue-600 cursor-pointer"
       >
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </div>
   </div>
-
-  <!-- Empresa -->
-  <div>
     <div class="relative">
       <input
         type="number"
@@ -113,19 +99,18 @@
         formControlName="empresaId"
         required
         placeholder="ID de la empresa"
-        class="bg-white text-sm rounded-lg w-full py-3.5 pr-3"
+        class="bg-white border-2 border-gray-300 text-sm text-gray-500 rounded-b-lg w-full py-3.5"
       />
     </div>
   </div>
 
-  <!-- Tipo Usuario -->
   <div>
     <div class="relative">
       <select
         id="tipoUsuario"
         formControlName="tipoUsuario"
         required
-        class="bg-white text-sm rounded-lg w-full py-3.5 pr-3 border border-gray-300"
+        class="bg-white text-sm rounded-lg w-full py-3.5 pr-3 border-2 text-gray-500 border-gray-300 cursor-pointer"
       >
         <option value="" disabled>Seleccioná un tipo de usuario</option>
         <option value="ADMINISTRADOR">Admin</option>
