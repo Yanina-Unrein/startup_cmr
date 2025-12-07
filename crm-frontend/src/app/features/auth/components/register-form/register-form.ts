@@ -36,14 +36,14 @@ export class RegisterForm {
     password: this.fb.nonNullable.control('', [Validators.required]),
     fullName: this.fb.nonNullable.control('', [Validators.required]),
     companyId: this.fb.nonNullable.control('', [Validators.required]),
-    userType: this.fb.nonNullable.control('', [Validators.required]),
+    typeUser: this.fb.nonNullable.control('', [Validators.required]),
   });
 
   get emailControl() { return this.form.get('email'); }
   get passwordControl() { return this.form.get('password'); }
   get fullNameControl() { return this.form.get('fullName'); }
   get companyControl() { return this.form.get('companyId'); }
-  get userTypeControl() { return this.form.get('userType'); }
+  get typeUserControl() { return this.form.get('userType'); }
 
   
   get showEmailRequiredError() { return this.emailControl?.touched && this.emailControl?.hasError('required'); }
@@ -54,7 +54,7 @@ export class RegisterForm {
   get showPasswordRequiredError() { return this.passwordControl?.touched && this.passwordControl?.hasError('required'); }
   get showFullNameRequiredError() { return this.fullNameControl?.touched && this.fullNameControl?.hasError('required'); }
   get showCompanyRequiredError() { return this.companyControl?.touched && this.companyControl?.hasError('required'); }
-  get showUserTypeRequiredError() { return this.userTypeControl?.touched && this.userTypeControl?.hasError('required'); }
+  get showtypeUserRequiredError() { return this.typeUserControl?.touched && this.typeUserControl?.hasError('required'); }
 
   submitForm() {
     if (this.form.invalid) {

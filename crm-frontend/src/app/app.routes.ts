@@ -46,9 +46,10 @@ export const routes: Routes = [
    * Redirección para cualquier ruta no encontrada
    */
   {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
+    path:'**',
+    redirectTo:'login',
+    pathMatch:'full'
+
   }
 ];
 

@@ -1,13 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { RegisterForm } from '../../components/register-form/register-form';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LogoTitle } from "@/app/shared/components/logo-title/logo-title";
+import { Router, RouterLink } from '@angular/router';
+import { RegisterUser } from '../../models/register-user';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ShowCustomMessage } from '../../../../shared/services/show-custom-message';
 
 @Component({
   selector: 'app-register',
@@ -21,24 +24,44 @@ import { LogoTitle } from "@/app/shared/components/logo-title/logo-title";
     MatButtonModule,
     MatIconModule,
     LogoTitle,
+    MatSnackBarModule,
     RouterLink
 ],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export default class Register {
+
   private auth = inject(AuthService);
   private router = inject(Router);
+  private readonly fb = inject(FormBuilder)
+  private readonly showCustomMessage = inject(ShowCustomMessage)
+
+  registerForm = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    nombre: ['', [Validators.required]],
+    empresaId: ['', [Validators.required]],
+    tipoUsuario: ['', [Validators.required]]
+  });
 
   errorMessage = '';
   isLoading = false;
 
-  onSubmit(data: any) {
+  onRegister() {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsDirty()
+      this.registerForm.markAllAsTouched()
+    }
+  }
+
+  onSubmit(data: RegisterUser) {
     this.errorMessage = '';
     this.isLoading = true;
 
     this.auth.register(data).subscribe({
-      next: () => {
+      next: (r) => {
+        this.showCustomMessage.showCustomMessage('Registro exitoso!')
         this.isLoading = false;
         this.router.navigate(['/login']);
       },
