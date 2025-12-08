@@ -1,13 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ChatListComponent } from '@/app/features/messages/components/chat-list/chat-list.component/chat-list.component';
-import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, ChatListComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatButtonModule
+  ],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -15,9 +18,8 @@ export class DashboardComponent {
 
   private router = inject(Router);
 
-  onOpenConversation(contactId: number) {
-    this.router.navigate(['/dashboard/messages', contactId]);
+  goToContacts() {
+    this.router.navigate(['/dashboard/contacts']);
   }
 
 }
-

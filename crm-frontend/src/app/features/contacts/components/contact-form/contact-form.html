@@ -1,34 +1,35 @@
-<div *ngIf="showNameError || showEmailRequiredError || showEmailInvalidError" class="error-container space-y-1 bg-red-500/20 rounded-lg p-2">
-  <p *ngIf="showNameError" class="text-gray-700 text-sm flex items-center">
-    <mat-icon class="text-base">error_outline</mat-icon>
-    El nombre es requerido
-  </p>
-  <p *ngIf="showEmailRequiredError" class="text-gray-700 text-sm flex items-center">
-    <mat-icon class="text-base">error_outline</mat-icon>
-    El email es requerido
-  </p>
-  <p *ngIf="showEmailInvalidError" class="text-gray-700 text-sm flex items-center">
-    <mat-icon class="text-base">error_outline</mat-icon>
-    Email inválido
-  </p>
-</div>
+<h2 mat-dialog-title>
+  {{ data ? 'Editar contacto' : 'Nuevo contacto' }}
+</h2>
 
-<form [formGroup]="form" (ngSubmit)="submitForm()" class="space-y-4">
-  <input formControlName="name" placeholder="Nombre" class="bg-white rounded-lg w-full py-2 px-3 border border-gray-300" />
-  <input formControlName="email" placeholder="Email" class="bg-white rounded-lg w-full py-2 px-3 border border-gray-300" />
-  <input formControlName="phone" placeholder="Teléfono" class="bg-white rounded-lg w-full py-2 px-3 border border-gray-300" />
-  <input formControlName="whatsappPhone" placeholder="WhatsApp" class="bg-white rounded-lg w-full py-2 px-3 border border-gray-300" />
+<mat-dialog-content class="space-y-4">
 
-  <select formControlName="funnelStatus" class="bg-white rounded-lg w-full py-2 px-3 border border-gray-300">
-    <option value="NEW">Nuevo</option>
-    <option value="CONTACTED">Contactado</option>
-    <option value="ACTIVE">Activo</option>
-    <option value="CLOSED">Cerrado</option>
-    <option value="LOST">Perdido</option>
-  </select>
+  <mat-form-field class="w-full">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="form.name" required />
+  </mat-form-field>
 
-  <button type="submit" [disabled]="isLoading"
-    class="w-full bg-blue-700 text-white rounded-lg py-2 shadow-md disabled:opacity-50">
-    {{ isLoading ? 'Guardando...' : 'Guardar contacto' }}
+  <mat-form-field class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="form.email" type="email" required />
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>WhatsApp</mat-label>
+    <input matInput [(ngModel)]="form.whatsappPhone" />
+  </mat-form-field>
+
+  <div *ngIf="errorMessage" class="text-red-500 text-sm">
+    {{ errorMessage }}
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="submit()">
+    Guardar
   </button>
-</form>
+</mat-dialog-actions>
+
+

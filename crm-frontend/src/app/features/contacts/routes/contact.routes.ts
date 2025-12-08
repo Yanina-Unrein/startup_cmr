@@ -9,21 +9,28 @@ const contactRoutes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('../components/contact-list/contact-list').then(m => m.ContactList),
+          import('../components/contact-list/contact-list').then(
+            m => m.ContactListComponent
+          ),
       },
       {
         path: 'new',
         loadComponent: () =>
-          import('../components/contact-form/contact-form').then(m => m.ContactForm),
+          import('../components/contact-form/contact-form').then(
+            m => m.ContactForm
+          ),
       },
       {
         path: ':id/edit',
         loadComponent: () =>
-          import('../components/contact-form/contact-form').then(m => m.ContactForm),
+          import('../components/contact-form/contact-form').then(
+            m => m.ContactForm
+          ),
       }
     ]
   }
 ];
 
 export default contactRoutes;
+
 

@@ -8,27 +8,18 @@ export const dashboardRoutes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      /**
-       * RUTA PRINCIPAL DEL DASHBOARD
-       * /dashboard → pantalla de contactos + mensajes
-       */
-      {
-        path: '',
-        loadChildren: () =>
-          import('../../contacts/routes/contact.routes')
-            .then(m => m.default),
-      },
-
-      /**
-       * MENSAJES (cuando el usuario selecciona un contacto)
-       * /dashboard/messages/:contactId
-       */
-      {
-        path: 'messages/:contactId',
-        loadComponent: () =>
-          import('../pages/messages-page/messages-page.component/messages-page.component')
-            .then(m => m.MessagesPageComponent),
-      }
+       {
+      path: 'contacts',
+      loadChildren: () =>
+        import('../../contacts/routes/contact.routes')
+          .then(m => m.default),
+    },
+ //     {
+   //     path: 'messages/:contactId',
+     //   loadComponent: () =>
+       //   import('../pages/messages-page/messages-page.component/messages-page.component')
+         //   .then(m => m.MessagesPageComponent),
+      //}
     ]
   }
 ];

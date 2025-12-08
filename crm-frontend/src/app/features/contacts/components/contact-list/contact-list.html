@@ -1,38 +1,68 @@
-<div class="contacts-container space-y-4 p-2">
+<div class="p-4">
 
-  <!-- Filtros -->
-  <div class="filter-bar flex gap-2 mb-2">
-    <button mat-stroked-button color="{{ filterStatus === '' ? 'primary' : '' }}" (click)="setFilter('')">Todos</button>
-    <button mat-stroked-button color="{{ filterStatus === 'NEW' ? 'primary' : '' }}" (click)="setFilter('NEW')">Nuevos</button>
-    <button mat-stroked-button color="{{ filterStatus === 'CONTACTED' ? 'primary' : '' }}" (click)="setFilter('CONTACTED')">Contactados</button>
-    <button mat-stroked-button color="{{ filterStatus === 'ACTIVE' ? 'primary' : '' }}" (click)="setFilter('ACTIVE')">Activos</button>
-    <button mat-stroked-button color="{{ filterStatus === 'CLOSED' ? 'primary' : '' }}" (click)="setFilter('CLOSED')">Cerrados</button>
-    <button mat-stroked-button color="{{ filterStatus === 'LOST' ? 'primary' : '' }}" (click)="setFilter('LOST')">Perdidos</button>
+  <!-- header acciones -->
+  <div class="flex justify-between items-center mb-4">
+    <div class="flex items-center gap-3">
+      <h2 class="text-xl font-bold">Contactos</h2>
+
+      <!-- filtros rápidos por estado -->
+      <div class="ml-4 flex items-center gap-2">
+        <button mat-button (click)="setFilter('')" class="text-sm">Todos</button>
+        <button mat-button (click)="setFilter('NEW')" class="text-sm">Nuevos</button>
+        <button mat-button (click)="setFilter('ACTIVE')" class="text-sm">Activos</button>
+        <button mat-button (click)="setFilter('WON')" class="text-sm">Cerrados</button>
+        <button mat-button (click)="setFilter('LOST')" class="text-sm">Perdidos</button>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <!-- búsqueda -->
+      <input
+        type="search"
+        placeholder="Buscar por nombre o email"
+        class="px-3 py-2 border rounded"
+        [(ngModel)]="search"
+        (ngModelChange)="onSearchChange($event)"
+      />
+
+      <button mat-raised-button color="primary" (click)="openCreateModal()">
+        <mat-icon>add</mat-icon>
+        Agregar contacto
+      </button>
+    </div>
   </div>
 
-  <!-- Lista de contactos -->
-  <div class="contacts-list grid grid-cols-1 gap-2">
-    <mat-card *ngFor="let contact of filteredContacts" class="contact-card" (click)="selectContact(contact)" [class.selected]="selectedContact?.id === contact.id">
-      <mat-card-header>
-        <mat-icon>person</mat-icon>
-        <mat-card-title>{{ contact.name }}</mat-card-title>
-        <mat-card-subtitle>{{ contact.email || 'Sin email' }}</mat-card-subtitle>
-      </mat-card-header>
+  <!-- estado de carga / error -->
+  <div *ngIf="isLoading()" class="text-gray-600 mb-4">Cargando contactos...</div>
+  <div *ngIf="error()" class="text-red-600 mb-4">{{ error() }}</div>
 
-      <mat-card-content>
-        <p *ngIf="contact.phone">📞 {{ contact.phone }}</p>
-        <p *ngIf="contact.whatsappPhone">💬 {{ contact.whatsappPhone }}</p>
-        <p>Funnel: <strong>{{ contact.funnelStatus }}</strong></p>
-      </mat-card-content>
+  <!-- lista -->
+  <div *ngIf="!isLoading()">
+    <div *ngIf="contacts().length === 0" class="text-gray-400 text-center py-8">
+      No hay contactos
+    </div>
 
-      <mat-card-actions class="flex justify-end gap-2">
-        <button mat-mini-button color="primary">Ver detalle</button>
-        <button mat-mini-button color="accent">Editar</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+    <div class="grid gap-4" *ngIf="contacts().length > 0">
+      <mat-card *ngFor="let c of contacts()" class="p-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-semibold">{{ c.name }}</h3>
+            <p class="text-sm text-gray-600">{{ c.email }}</p>
+            <p class="text-sm text-gray-600">{{ c.whatsappPhone }}</p>
+            <p class="text-xs text-gray-500">Estado: {{ c.funnelStatus }}</p>
+          </div>
 
-  <div *ngIf="filteredContacts.length === 0" class="text-gray-500 text-center mt-2">
-    No hay contactos para mostrar.
+          <div class="flex items-center gap-2">
+            <button mat-icon-button (click)="openEditModal(c)" aria-label="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deleteContact(c)" aria-label="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>
