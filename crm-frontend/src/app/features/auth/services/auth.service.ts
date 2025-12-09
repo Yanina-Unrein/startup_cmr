@@ -54,9 +54,11 @@ export class AuthService {
     );
   }
 
+
   register(user: RegisterUser): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, user);
   }
+
 
 
   logout() {

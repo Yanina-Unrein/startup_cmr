@@ -1,15 +1,28 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
+import { DashboardComponent } from '../pages/dashboard/dashboard';
 
-const dashboardRoutes: Routes = [
+// import { authGuard } from '@/app/core/guards/auth.guard'; // desactivado
+
+export const dashboardRoutes: Routes = [
   {
-    path:'',
-    children:[
-      {
-        path:'',
-        loadComponent:()=> import('../pages/dashboard/dashboard')
-      }
+    path: '',
+    component: DashboardComponent,
+    children: [
+       {
+      path: 'contacts',
+      loadChildren: () =>
+        import('../../contacts/routes/contact.routes')
+          .then(m => m.default),
+    },
+ //     {
+   //     path: 'messages/:contactId',
+     //   loadComponent: () =>
+       //   import('../pages/messages-page/messages-page.component/messages-page.component')
+         //   .then(m => m.MessagesPageComponent),
+      //}
     ]
   }
-]
+];
 
-export default dashboardRoutes
+export default dashboardRoutes;
+
