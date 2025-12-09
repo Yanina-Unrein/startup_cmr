@@ -1,0 +1,52 @@
+<header class="w-full bg-blue-500 text-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <h2 class="text-xl font-medium">Dashboard</h2>
+    @if (auth.isLogged()) {
+      <div class="relative">
+        <button 
+          (click)="toggleMenu()" 
+          class="flex items-center gap-2 bg-gray-600 px-3 py-2 rounded-lg hover:bg-gray-700 transition cursor-pointer"
+        >
+          <img
+            class="w-9 h-9 rounded-full border-blue-500 border-2 object-cover"
+            src="https://i.pravatar.cc/100"
+            alt="user photo"
+          />
+          <span class="font-medium text-white">
+            User
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="h-5 w-5 transition-transform"
+               [class.rotate-180]="isMenuOpen()"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        @if (isMenuOpen()) {
+          <div 
+            class="absolute right-0 mt-2 w-48 bg-white text-gray-900 rounded-lg shadow-lg border border-gray-200 z-50 animate-fadeIn"
+          >
+            <a routerLink="/perfil"
+               (click)="closeMenu()"
+               class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              Perfil
+            </a>
+            <a routerLink="/cambiar-password"
+               (click)="closeMenu()"
+               class="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              Cambiar contraseña
+            </a>
+            <button 
+              (click)="logout()" 
+              class="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-600">
+              Cerrar sesión
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</header>
+
+

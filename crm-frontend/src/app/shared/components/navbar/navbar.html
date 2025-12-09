@@ -1,0 +1,56 @@
+<nav 
+  class="bg-white h-screen shadow-xl flex flex-col transition-all duration-300 overflow-hidden border-r border-gray-200"
+  [class.w-64]="!isCollapsed"
+  [class.w-20]="isCollapsed"
+  [class.rounded-tr-3xl]="!isCollapsed"
+  [class.rounded-br-3xl]="!isCollapsed"
+>
+  <div class="flex items-center justify-between p-4">
+      <div 
+      class="transition-all duration-300"
+      [class.opacity-0]="isCollapsed"
+      [class.w-0]="isCollapsed"
+      [class.overflow-hidden]="isCollapsed"
+    >
+      <app-logo-title [size]="'text-2xl'"></app-logo-title>
+    </div>
+    <button 
+      class="p-2 text-white cursor-pointer"
+      (click)="toggleSidebar()"
+    >
+      <mat-icon class="rounded-full bg-blue-500 hover:bg-gray-700 transition">
+        {{ isCollapsed ? 'chevron_right' : 'chevron_left' }}
+      </mat-icon>
+    </button>
+  </div>
+  <ul class="mt-4 flex flex-col gap-1">
+    @for (item of menuItems; track $index) {
+        <li>
+           <a 
+                [routerLink]="item.route"
+                routerLinkActive="bg-blue-500 text-white"
+                class="flex items-center px-4 py-3 rounded-r-3xl hover:bg-blue-600  hover:text-white transition-all"
+                matTooltip="{{ item.label }}" 
+                matTooltipDisabled="!isCollapsed"
+                matTooltipPosition="right"
+
+                [class.justify-center]="isCollapsed"
+                [class.gap-4]="!isCollapsed"
+            >
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <span 
+                    class="whitespace-nowrap transition-opacity duration-300"
+                    [class.opacity-0]="isCollapsed"
+                    [class.w-0]="isCollapsed"
+                    [class.overflow-hidden]="isCollapsed"
+                    >
+                    {{ item.label }}
+                </span>
+            </a>
+        </li>
+    }
+  </ul>
+</nav>
+
+
+

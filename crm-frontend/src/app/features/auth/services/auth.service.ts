@@ -14,11 +14,25 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
 
   private _token = signal<string | null>(localStorage.getItem('token'));
+  
   private _user = signal<any | null>(null);
+  get user() {
+    return this._user;
+  }
 
   isLogged = computed(() => !!this._token());
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+   const savedUser = localStorage.getItem('user');
+
+    if (savedUser && savedUser !== 'undefined' && savedUser !== 'null') {
+      try {
+        this._user.set(JSON.parse(savedUser));
+      } catch {
+        this._user.set(null); 
+      }
+    }
+  }
 
   login(email: string, password: string) {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password })
@@ -26,8 +40,18 @@ export class AuthService {
         tap(res => {
           localStorage.setItem('token', res.token);
           this._token.set(res.token);
-        })
-      );
+
+          const user = {
+          id: res.id,
+          email: res.email,
+          fullName: res.fullName,
+          userType: res.userType
+        };
+
+        localStorage.setItem('user', JSON.stringify(user));
+        this._user.set(user);
+      })
+    );
   }
 
   register(user: RegisterUser): Observable<any> {
@@ -40,7 +64,5 @@ export class AuthService {
     this._token.set(null);
     this._user.set(null);
   }
-
-  user = computed(() => this._user());
 }
 
