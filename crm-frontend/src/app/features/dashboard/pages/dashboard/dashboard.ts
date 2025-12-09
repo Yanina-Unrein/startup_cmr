@@ -1,11 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatButtonModule
+  ],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  styleUrls: ['./dashboard.css']
 })
-export default class Dashboard {
+export class DashboardComponent {
+
+  private router = inject(Router);
+
+  goToContacts() {
+    this.router.navigate(['/dashboard/contacts']);
+  }
 
 }

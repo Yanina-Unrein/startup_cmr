@@ -1,7 +1,7 @@
 export interface RegisterUser{
-    nombre: string;
+    fullName: string;
     email: string;
     password: string;
-    empresaId: string;
-    tipoUsuario: string;
+    companyId: string;
+    typeUser: string;
 }

@@ -1,1 +1,8 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <button mat-raised-button color="primary" (click)="goToContacts()">
+    Listar contactos
+  </button>
+
+  <!-- Aquí aparecerán las rutas hijas -->
+  <router-outlet></router-outlet>
+</div>

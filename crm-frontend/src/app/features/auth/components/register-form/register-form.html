@@ -6,10 +6,12 @@
     </p>
   }
 
-  @if (showNombreRequiredError) {
+
+  @if (showFullNameRequiredError) {
     <p class="text-gray-700 text-sm flex items-center p-3">
       <mat-icon class="text-base mr-2">error_outline</mat-icon>
       El nombre es requerido
+
     </p>
   }
 
@@ -34,14 +36,15 @@
     </p>
   }
 
-  @if (showEmpresaRequiredError) {
+  @if (showCompanyRequiredError) {
     <p class="text-gray-700 text-sm flex items-center p-3">
       <mat-icon class="text-base mr-2">error_outline</mat-icon>
+
       La empresa es requerida
     </p>
   }
 
-  @if (showTipoUsuarioRequiredError) {
+  @if (showtypeUserRequiredError) {
     <p class="text-gray-700 text-sm flex items-center p-3">
       <mat-icon class="text-base mr-2">error_outline</mat-icon>
       Debes seleccionar un tipo de usuario
@@ -49,13 +52,16 @@
   }
 </div>
 
+
 <form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col gap-4">
+
   <div class="flex flex-col gap-4">
+
     <div class="relative">
       <input
         type="text"
-        id="nombre"
-        formControlName="nombre"
+        id="fullName"
+        formControlName="fullName"
         required
         placeholder="Nombre completo"
         class="email-input bg-white border-2 border-gray-300 text-gray-500 text-sm rounded-t-lg w-full py-3.5"
@@ -95,8 +101,8 @@
     <div class="relative">
       <input
         type="number"
-        id="empresaId"
-        formControlName="empresaId"
+        id="companyId"
+        formControlName="companyId"
         required
         placeholder="ID de la empresa"
         class="bg-white border-2 border-gray-300 text-sm text-gray-500 rounded-b-lg w-full py-3.5"
@@ -107,14 +113,14 @@
   <div>
     <div class="relative">
       <select
-        id="tipoUsuario"
-        formControlName="tipoUsuario"
+        id="typeUser"
+        formControlName="typeUser"
         required
         class="bg-white text-sm rounded-lg w-full py-3.5 pr-3 border-2 text-gray-500 border-gray-300 cursor-pointer"
       >
         <option value="" disabled>Seleccioná un tipo de usuario</option>
-        <option value="ADMINISTRADOR">Admin</option>
-        <option value="USUARIO">Usuario</option>
+        <option value="ADMIN">Admin</option>
+        <option value="USER">Usuario</option>
       </select>
     </div>
   </div>

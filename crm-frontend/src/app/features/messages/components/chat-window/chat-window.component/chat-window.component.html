@@ -1,0 +1,23 @@
+<mat-card *ngIf="!contact" class="p-4 text-center text-gray-500">
+  Seleccioná un contacto para ver la conversación
+</mat-card>
+
+<mat-card *ngIf="contact" class="chat-card p-2 flex flex-col h-full">
+  <div class="chat-header mb-2">
+    <h3 class="text-lg font-semibold">{{ contact.name }}</h3>
+    <small class="text-sm text-gray-500">{{ contact.email || '' }}</small>
+  </div>
+
+  <div class="chat-messages flex-grow overflow-y-auto p-2 space-y-2" style="min-height: 300px;">
+    <div *ngFor="let m of messages" [class.from-me]="m.direction === 'OUTGOING'" class="p-2 rounded">
+      <div class="text-sm">{{ m.content }}</div>
+      <div class="text-xs text-gray-400 mt-1">{{ m.timestamp | date:'short' }}</div>
+    </div>
+  </div>
+
+  <div class="chat-composer mt-2 flex gap-2 items-center">
+    <input [(ngModel)]="newMessage" placeholder="Escribí un mensaje..." class="flex-grow p-2 border rounded" />
+    <button mat-raised-button color="primary" (click)="send()">Enviar</button>
+    <button mat-stroked-button (click)="simulateIncoming()">Simular incoming</button>
+  </div>
+</mat-card>
