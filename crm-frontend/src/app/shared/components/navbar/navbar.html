@@ -28,7 +28,8 @@
         <li>
            <a 
                 [routerLink]="item.route"
-                routerLinkActive="bg-blue-500 text-white"
+                routerLinkActive="text-blue-500"
+                [routerLinkActiveOptions]=" item.exact ? { exact: true } : { exact: false } "
                 class="flex items-center px-4 py-3 rounded-r-3xl hover:bg-blue-600  hover:text-white transition-all"
                 matTooltip="{{ item.label }}" 
                 matTooltipDisabled="!isCollapsed"
@@ -50,6 +51,13 @@
         </li>
     }
   </ul>
+  <hr class="w-50 text-gray-300 my-4">
+  <button 
+    (click)="logout()" 
+    class="w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-600"
+  >
+    Cerrar sesión
+  </button>
 </nav>
 
 

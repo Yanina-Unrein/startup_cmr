@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LogoTitle } from "../logo-title/logo-title";
+import { AuthService } from '@/app/features/auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,10 +21,13 @@ import { LogoTitle } from "../logo-title/logo-title";
   styleUrl: './navbar.css',
 })
 export class Navbar {
- isCollapsed = false;
+  auth = inject(AuthService);
+  router = inject(Router);
 
-   menuItems = [
-    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
+  isCollapsed = false;
+
+  menuItems = [
+    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard', exact: true },
     { label: 'Contactos', icon: 'contacts', route: '/dashboard/contacts' },
     { label: 'Mensajes', icon: 'chat', route: '/dashboard/messages' },
     { label: 'Tareas', icon: 'task_alt', route: '/dashboard/tasks' },
@@ -37,5 +41,10 @@ export class Navbar {
 
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -8,8 +8,9 @@ import { Navbar } from "@/app/shared/components/navbar/navbar";
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  standalone: true,
-  imports: [Header, Navbar
+  imports: [
+    Header, 
+    Navbar,
     CommonModule,
     RouterModule,
     MatButtonModule

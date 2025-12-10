@@ -1,3 +1,7 @@
+header{
+  background: #E1EEFF;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

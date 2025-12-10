@@ -8,6 +8,12 @@ export const dashboardRoutes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('../pages/dashboard-home/dashboard-home')
+            .then(m => m.DashboardHome), 
+      },
        {
       path: 'contacts',
       loadChildren: () =>
