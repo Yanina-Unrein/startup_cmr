@@ -1,0 +1,57 @@
+.metrics-container {
+  width: 100%;
+  max-width: 760px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.week-block {
+  margin-bottom: 24px;
+}
+
+.week-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.bar-wrapper {
+  background: #e5e7eb;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.count {
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.separator {
+  border-bottom: 1px solid #ddd;
+  margin-top: 12px;
+}
