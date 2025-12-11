@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow: visible !important;
+}
+
+:host(.expanded) {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.15);
+}

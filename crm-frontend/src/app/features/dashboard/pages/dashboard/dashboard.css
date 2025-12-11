@@ -1,17 +1,22 @@
-.dashboard-container {
+.layout-container {
   display: flex;
   height: 100vh;
-  overflow: hidden;
+  width: 100%;
+  background: #E1EEFF;
 }
 
-.sidebar {
-  width: 300px;
-  border-right: 1px solid #e5e7eb;
-  overflow-y: auto;
-}
-
-.main-content {
+/* Contenido */
+.content-area {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  overflow: hidden;
-  background: #fafafa;
+}
+
+
+/* Main donde va el dashboard */
+.dashboard-main {
+  padding: 20px;
+  overflow-y: auto;
+  background: #E1EEFF;
+  height: calc(100vh - 64px);
 }

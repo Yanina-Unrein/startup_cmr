@@ -1,8 +1,15 @@
-<div class="dashboard-container">
-  <button mat-raised-button color="primary" (click)="goToContacts()">
-    Listar contactos
-  </button>
+<div class="layout-container">
+  
+  <!-- Sidebar LATERAL IZQUIERDO -->
+  <app-navbar></app-navbar>
 
-  <!-- Aquí aparecerán las rutas hijas -->
-  <router-outlet></router-outlet>
+  <div class="content-area">
+
+    <!-- Contenido principal -->
+    <main class="dashboard-main">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
 </div>
