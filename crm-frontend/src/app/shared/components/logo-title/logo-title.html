@@ -1,0 +1,11 @@
+@if (link) {
+  <a [routerLink]="url" class="flex gap-2 justify-center no-underline">
+    <span class="font-semibold text-blue-500 {{ size }}">Startup</span>
+    <span class="font-light text-blue-700 {{ size }}">CRM</span>
+  </a>
+} @else {
+  <h1 class="flex gap-2 justify-center">
+    <span class="font-semibold text-blue-500 {{ size }}">Startup</span>
+    <span class="font-light text-blue-700 {{ size }}">CRM</span>
+  </h1>
+}

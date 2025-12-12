@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>
+  {{ data ? 'Editar contacto' : 'Nuevo contacto' }}
+</h2>
+
+<mat-dialog-content class="space-y-4">
+
+  <mat-form-field class="w-full">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="form.name" required />
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="form.email" type="email" required />
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>WhatsApp</mat-label>
+    <input matInput [(ngModel)]="form.whatsappPhone" />
+  </mat-form-field>
+
+  <div *ngIf="errorMessage" class="text-red-500 text-sm">
+    {{ errorMessage }}
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="submit()">
+    Guardar
+  </button>
+</mat-dialog-actions>
+
+

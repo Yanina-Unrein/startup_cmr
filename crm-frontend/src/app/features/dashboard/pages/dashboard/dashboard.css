@@ -1,0 +1,22 @@
+.layout-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: #E1EEFF;
+}
+
+/* Contenido */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
+/* Main donde va el dashboard */
+.dashboard-main {
+  padding: 20px;
+  overflow-y: auto;
+  background: #E1EEFF;
+  height: calc(100vh - 64px);
+}

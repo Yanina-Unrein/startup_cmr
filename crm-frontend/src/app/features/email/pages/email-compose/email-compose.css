@@ -1,0 +1,46 @@
+.email-compose-container {
+  animation: fadeIn 0.3s ease-in;
+  border-radius: 20px !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+::ng-deep .success-snackbar {
+  background-color: #10b981 !important;
+  color: white !important;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #ef4444 !important;
+  color: white !important;
+}
+
+/* Estilos para la vista previa HTML */
+::ng-deep .mat-card iframe {
+  border: none;
+  width: 100%;
+  min-height: 300px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start {
+  border-right-width: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-start,
+.mat-form-field-appearance-outline .mat-form-field-outline-start:hover,
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-start {
+  border-right-width: 0 !important;
+}
