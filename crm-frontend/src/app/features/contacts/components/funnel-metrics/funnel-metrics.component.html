@@ -1,0 +1,28 @@
+<div class="metrics-container">
+  <h2 class="title">Métricas semanales de contactos por funnel</h2>
+
+  <div *ngFor="let w of contactsByWeek()" class="week-block">
+    <h3 class="week-title">{{ w.week }}</h3>
+
+    <div *ngFor="let state of funnelStates" class="row">
+      <div class="label">{{ state }}</div>
+
+      <div class="bar-wrapper">
+        <div 
+          class="bar"
+          [style.width.%]="w.total > 0 ? (w[state] / w.total) * 100 : 0"
+          [style.background]="{
+            'NEW': '#60a5fa',
+            'ACTIVE': '#34d399',
+            'WON': '#a78bfa',
+            'LOST': '#fca5a5'
+          }[state]"
+        ></div>
+      </div>
+
+      <div class="count">{{ w[state] }}</div>
+    </div>
+
+    <div class="separator"></div>
+  </div>
+</div>

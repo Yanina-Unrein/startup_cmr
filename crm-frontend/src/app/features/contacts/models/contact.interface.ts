@@ -7,7 +7,7 @@ export interface Contact {
   funnelStatus?: 'CONTACTED' | 'ACTIVE' | 'CLOSED' | 'LOST' | 'NEW' | string;
   assignedTo?: number | null;
   tags?: string[];
-  createdAt?: string;
+  dataCreacionContact?: string;
   updatedAt?: string;
   companyId?: number | null;
 
