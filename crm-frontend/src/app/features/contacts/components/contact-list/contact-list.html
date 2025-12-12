@@ -1,0 +1,70 @@
+<div class="p-4">
+
+ <div class="">
+    <h2 class="text-4xl font-bold pb-2.5">Gestión de contactos</h2>
+    <h3 class="text-2xl text-gray-500">Administra y segmenta todos tus leads y clientes</h3>
+  </div>
+  <!-- header acciones -->
+  <div class="flex justify-between items-center mt-5 mb-4">
+    <div class="flex items-center gap-3">
+      <!-- filtros rápidos por estado -->
+      <div class="ml-4 flex items-center gap-2">
+        <button mat-button (click)="setFilter('')" class="text-sm">Todos</button>
+        <button mat-button (click)="setFilter('NEW')" class="text-sm">Nuevos</button>
+        <button mat-button (click)="setFilter('ACTIVE')" class="text-sm">Activos</button>
+        <button mat-button (click)="setFilter('WON')" class="text-sm">Cerrados</button>
+        <button mat-button (click)="setFilter('LOST')" class="text-sm">Perdidos</button>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <!-- búsqueda -->
+      <input
+        type="search"
+        placeholder="Buscar por nombre o email"
+        class="px-3 py-2 border rounded"
+        [(ngModel)]="search"
+        (ngModelChange)="onSearchChange($event)"
+      />
+
+      <button mat-raised-button color="primary" (click)="openCreateModal()">
+        <mat-icon>add</mat-icon>
+        Agregar contacto
+      </button>
+    </div>
+  </div>
+
+  <!-- estado de carga / error -->
+  <div *ngIf="isLoading()" class="text-gray-600 mb-4">Cargando contactos...</div>
+  <div *ngIf="error()" class="text-red-600 mb-4">{{ error() }}</div>
+
+  <!-- lista -->
+  <div *ngIf="!isLoading()">
+    <div *ngIf="contacts().length === 0" class="text-gray-400 text-center py-8">
+      No hay contactos
+    </div>
+
+    <div class="grid gap-4" *ngIf="contacts().length > 0">
+      <mat-card *ngFor="let c of contacts()" class="p-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-semibold">{{ c.name }}</h3>
+            <p class="text-sm text-gray-600">{{ c.email }}</p>
+            <p class="text-sm text-gray-600">{{ c.whatsappPhone }}</p>
+            <p class="text-xs text-gray-500">Estado: {{ c.funnelStatus }}</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button mat-icon-button (click)="openEditModal(c)" aria-label="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deleteContact(c)" aria-label="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

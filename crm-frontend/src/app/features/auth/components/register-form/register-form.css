@@ -1,4 +1,11 @@
-/* Para mantener consistencia visual */
+
+.error-container{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+}
+
 select:focus {
   outline: none;
   border-color: #3b82f6;
