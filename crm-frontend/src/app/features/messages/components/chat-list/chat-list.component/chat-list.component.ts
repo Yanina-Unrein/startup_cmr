@@ -22,8 +22,9 @@ export class ChatListComponent implements OnInit {
   @Output() openConversation = new EventEmitter<number>();
 
   ngOnInit() {
-    this.refresh();
-    setInterval(() => this.refresh(), 2000);
+    this.messagesService.messages$.subscribe(() => {
+      this.refresh();
+    });
   }
 
   private refresh() {

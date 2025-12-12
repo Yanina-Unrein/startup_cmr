@@ -10,4 +10,5 @@ export interface Message {
   type: TypeMessage;
   direction: DirectionMessage;
   timestamp: Date;
+  status?: 'sending' | 'sent' | 'failed' | 'delivered';
 }

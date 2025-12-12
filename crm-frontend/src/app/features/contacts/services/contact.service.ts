@@ -9,7 +9,7 @@
 
 import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '@/environments/environment.development';
+import { environment } from '@/environments/environment';
 import { Contact } from '../models/contact.interface';
 import { Observable, tap, catchError, of } from 'rxjs';
 
@@ -124,6 +124,10 @@ export class ContactsService {
       }),
       tap(() => this._loading.set(false))
     );
+  }
+
+  getContactById(id: number): Contact | undefined {
+    return this._contacts().find(c => c.id === id);
   }
 }
 

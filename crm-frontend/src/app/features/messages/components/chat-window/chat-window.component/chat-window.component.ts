@@ -23,11 +23,21 @@ export class ChatWindowComponent {
   private messagesService = inject(MessagesService);
 
   ngOnChanges() {
-    if (this.contact?.id != null) {
-      this.loadMessages(this.contact.id);
-    } else {
-      this.messages = [];
-    }
+    if (!this.contact?.id) return;
+
+    const id = this.contact.id;
+
+    this.messagesService.getMessages(id).subscribe(msgs => {
+      this.messages = msgs;
+      setTimeout(() => this.scrollToBottom(), 50);
+    });
+
+    this.messagesService.listenToContact(id);
+
+    // observar store de todos los mensajes
+    this.messagesService.messages$.subscribe(all => {
+      this.messages = all.filter(m => m.contactId === id);
+    });
   }
 
   loadMessages(contactId: number) {
@@ -44,12 +54,6 @@ export class ChatWindowComponent {
       this.loadMessages(this.contact!.id);
       this.newMessage = '';
     });
-  }
-
-  simulateIncoming() {
-    if (!this.contact) return;
-    this.messagesService.simulateIncoming(this.contact.id, `Simulado: saludo a ${this.contact.name}`);
-    this.loadMessages(this.contact.id);
   }
 
   private scrollToBottom() {
