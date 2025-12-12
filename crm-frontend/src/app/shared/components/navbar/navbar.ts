@@ -29,13 +29,13 @@ export class Navbar {
   menuItems = [
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard', exact: true },
     { label: 'Contactos', icon: 'contacts', route: '/dashboard/contacts' },
+    { label: 'Emails', icon: 'email', route: '/dashboard/email/compose' },
     { label: 'Mensajes', icon: 'chat', route: '/dashboard/messages' },
-    { label: 'Tareas', icon: 'task_alt', route: '/dashboard/tasks' },
-    { label: 'Pipeline', icon: 'trending_up', route: '/dashboard/pipeline' },
-    { label: 'Campañas', icon: 'campaign', route: '/dashboard/campaigns' },
+    // { label: 'Pipeline', icon: 'trending_up', route: '/dashboard/pipeline' },
+    // { label: 'Campañas', icon: 'campaign', route: '/dashboard/campaigns' },
     { label: 'Analíticas', icon: 'analytics', route: '/dashboard/analytics' },
-    { label: 'Etiquetas', icon: 'label', route: '/dashboard/tags' },
-    { label: 'Plantillas', icon: 'description', route: '/dashboard/templates' },
+    // { label: 'Etiquetas', icon: 'label', route: '/dashboard/tags' },
+    { label: 'Plantillas', icon: 'description', route: '/dashboard/email/templates' },
     { label: 'Configuración', icon: 'settings', route: '/dashboard/settings' }
   ];
 

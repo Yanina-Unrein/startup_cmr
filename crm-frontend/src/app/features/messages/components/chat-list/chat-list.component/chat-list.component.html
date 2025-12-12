@@ -1,8 +1,9 @@
 <div class="p-2">
   <h4 class="text-sm font-medium mb-2">Conversaciones</h4>
 
+  @for (c of conversations; track $index) {
   <mat-nav-list>
-    <mat-list-item *ngFor="let c of conversations" (click)="open(c.contactId)" style="cursor:pointer;">
+    <mat-list-item (click)="open(c.contactId)" style="cursor:pointer;">
       <div mat-line>{{ contactName(c.contactId) }}</div>
       <div mat-line class="text-xs text-gray-500">{{ c.lastMessage?.content }}</div>
 
@@ -14,4 +15,5 @@
 
     </mat-list-item>
   </mat-nav-list>
+  }
 </div>

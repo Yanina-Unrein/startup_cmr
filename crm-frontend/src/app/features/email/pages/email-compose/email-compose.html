@@ -1,0 +1,264 @@
+<div class="email-compose-container p-6 max-w-6xl bg-white shadow-md mt-8 mb-12">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">Nuevo Email</h1>
+      <p class="text-sm text-gray-600 mt-1">Envía correos a tus contactos</p>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <button 
+        mat-stroked-button 
+        (click)="toggleEmailType()"
+        [matTooltip]="emailType === 'text' ? 'Cambiar a HTML' : 'Cambiar a texto plano'">
+        <mat-icon>{{ emailType === 'html' ? 'code' : 'text_fields' }}</mat-icon>
+        {{ emailType === 'text' ? 'Texto Plano' : 'HTML' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Formulario Principal -->
+    <div class="lg:col-span-2">
+      <mat-card class="p-6">
+        <form [formGroup]="emailForm" (ngSubmit)="sendEmail()">      
+          <!-- Selector de Contacto -->
+          <mat-form-field  class="w-full mb-4">
+            <mat-label>Destinatario</mat-label>
+            <mat-select 
+              (selectionChange)="onContactSelected($event.value)"
+              placeholder="Selecciona un contacto">
+              @for (contact of contacts; track $index) {
+                <mat-option [value]="contact">
+                  {{ contact.name }} - {{ contact.email }}
+                </mat-option>
+              }
+            </mat-select>
+            <mat-icon matPrefix>person</mat-icon>
+          </mat-form-field>
+
+          <!-- Email manual (opcional) -->
+          <mat-form-field appearance="outline" class="w-full mb-4">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="to" type="email" placeholder="ejemplo@correo.com">
+            <mat-icon matPrefix class="mr-5">email</mat-icon>
+            @if (emailForm.get('to')?.hasError('required')) {
+              <mat-error>
+                El email es requerido
+              </mat-error>
+            }
+            @if (emailForm.get('to')?.hasError('email')) {
+              <mat-error>
+                Email inválido
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Asunto -->
+          <mat-form-field appearance="outline" class="w-full mb-4">
+            <mat-label>Asunto</mat-label>
+            <input matInput formControlName="subject" placeholder="Asunto del email">
+            <mat-icon matPrefix class="mr-8">subject</mat-icon>
+            @if (emailForm.get('subject')?.hasError('required')) {
+              <mat-error>
+                El asunto es requerido
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Editor HTML - Barra de herramientas -->
+           @if (emailType === 'html') {
+            <div class="mb-2 p-2 bg-gray-50 rounded-lg flex flex-wrap gap-1">
+              <button 
+                type="button"
+                mat-mini-fab 
+                color="basic"
+                (click)="insertHtmlTag('bold')"
+                matTooltip="Negrita"
+                class="!w-10 !h-10">
+                <mat-icon>format_bold</mat-icon>
+              </button>
+              <button 
+                type="button"
+                mat-mini-fab 
+                color="basic"
+                (click)="insertHtmlTag('italic')"
+                matTooltip="Cursiva"
+                class="!w-10 !h-10">
+                <mat-icon>format_italic</mat-icon>
+              </button>
+              <button 
+                type="button"
+                mat-mini-fab 
+                color="basic"
+                (click)="insertHtmlTag('heading')"
+                matTooltip="Título"
+                class="!w-10 !h-10">
+                <mat-icon>title</mat-icon>
+              </button>
+              <button 
+                type="button"
+                mat-mini-fab 
+                color="basic"
+                (click)="insertHtmlTag('link')"
+                matTooltip="Enlace"
+                class="!w-10 !h-10">
+                <mat-icon>link</mat-icon>
+              </button>
+              <button 
+                type="button"
+                mat-mini-fab 
+                color="basic"
+                (click)="insertHtmlTag('image')"
+                matTooltip="Imagen"
+                class="!w-10 !h-10">
+                <mat-icon>image</mat-icon>
+              </button>
+              <button 
+                type="button"
+                mat-mini-fab 
+                color="basic"
+                (click)="insertHtmlTag('button')"
+                matTooltip="Botón"
+                class="!w-10 !h-10">
+                <mat-icon>smart_button</mat-icon>
+              </button>
+              <button 
+                type="button"
+                mat-mini-fab 
+                color="basic"
+                (click)="insertHtmlTag('divider')"
+                matTooltip="Separador"
+                class="!w-10 !h-10">
+                <mat-icon>horizontal_rule</mat-icon>
+              </button>
+              <button 
+                type="button"
+                mat-stroked-button
+                (click)="togglePreview()"
+                class="ml-auto">
+                <mat-icon>{{ showPreview ? 'code' : 'visibility' }}</mat-icon>
+                {{ showPreview ? 'Editar' : 'Vista previa' }}
+              </button>
+            </div>
+          }
+
+          <!-- Cuerpo del email -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              Mensaje {{ emailType === 'html' ? '(HTML)' : '(Texto)' }}
+            </label>
+            @if (!showPreview) {
+              <div>
+                <textarea
+                  formControlName="body"
+                  [rows]="emailType === 'html' ? 15 : 10"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+                  [placeholder]="emailType === 'html' ? 'Escribe o pega tu código HTML aquí...' : 'Escribe tu mensaje aquí...'"
+                  (input)="emailType === 'html' && updatePreview()">
+                </textarea>
+              </div>
+            }
+            @if (showPreview && emailType === 'html') {
+              <div> 
+                  class="border border-gray-300 rounded-lg p-4 bg-white min-h-[300px]"
+                  [innerHTML]="htmlPreview">
+              </div>
+            }
+             @if (emailForm.get('body')?.hasError('required') && emailForm.get('body')?.touched) {
+              <mat-error>
+                El mensaje es requerido
+              </mat-error>
+            }
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="flex items-center justify-between gap-3">
+            <button 
+              type="button"
+              mat-stroked-button
+              (click)="saveAsTemplate()"
+              [disabled]="emailForm.invalid">
+              <mat-icon>save</mat-icon>
+              Guardar plantilla
+            </button>
+
+            <div class="flex gap-2">
+              <button 
+                type="button"
+                mat-stroked-button
+                (click)="resetForm()"
+                [disabled]="isSending">
+                <mat-icon>close</mat-icon>
+                Cancelar
+              </button>
+
+              <button 
+                type="submit"
+                mat-raised-button 
+                color="primary"
+                [disabled]="emailForm.invalid || isSending">
+                @if (isSending) {
+                <mat-spinner diameter="20" class="inline-block mr-2"></mat-spinner>
+                } @else {
+                <mat-icon>send</mat-icon>
+                }
+                {{ isSending ? 'Enviando...' : 'Enviar Email' }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+
+    <!-- Sidebar - Plantillas -->
+    <div class="lg:col-span-1">
+      
+      <!-- Plantillas guardadas -->
+      <mat-card class="p-4 mb-4">
+        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+          <mat-icon>bookmark</mat-icon>
+          Plantillas Guardadas
+        </h3>
+        <div class="space-y-2">
+          @for (template of templates; track $index) {
+            <button 
+              type="button"
+              mat-stroked-button
+              class="w-full text-left"
+              (click)="onTemplateSelected(template)">
+              <div class="flex items-center gap-2">
+                <mat-icon class="text-sm">{{ template.type === 'html' ? 'code' : 'text_fields' }}</mat-icon>
+                <span class="truncate">{{ template.name }}</span>
+              </div>
+            </button>
+          }
+          @if (templates.length === 0) {
+            <p class="text-sm text-gray-500 text-center py-4">
+              No hay plantillas guardadas
+            </p>
+          }
+        </div>
+      </mat-card>
+
+      <!-- Plantillas HTML predefinidas -->
+      <mat-card class="p-4" *ngIf="emailType === 'html'">
+        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+          <mat-icon>auto_awesome</mat-icon>
+          Plantillas HTML
+        </h3>
+        
+        <div class="space-y-2">
+            @for (template of htmlTemplates; track $index) {
+              <button 
+                type="button"
+                mat-stroked-button
+                class="w-full"
+                (click)="onHtmlTemplateSelected(template)">
+                {{ template.name }}
+              </button>
+            }
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

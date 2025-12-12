@@ -20,6 +20,18 @@ export const dashboardRoutes: Routes = [
         import('../../contacts/routes/contact.routes')
           .then(m => m.default),
     },
+    {
+      path: 'messages',
+      loadChildren: () =>
+        import('../../messages/routes/messages.routes')
+        .then(m => m.MessagesRoutes),
+    },
+    {
+      path: 'email/compose',
+      loadComponent: () =>
+        import('../../../features/email/pages/email-compose/email-compose')
+          .then(m => m.EmailCompose),
+    }
  //     {
    //     path: 'messages/:contactId',
      //   loadComponent: () =>
