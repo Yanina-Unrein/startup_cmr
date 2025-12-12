@@ -14,6 +14,7 @@ export const dashboardRoutes: Routes = [
           import('../pages/dashboard-home/dashboard-home')
             .then(m => m.DashboardHome), 
       },
+     
        {
       path: 'contacts',
       loadChildren: () =>
